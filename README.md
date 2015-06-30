@@ -36,15 +36,15 @@ cd MathComplexBackend
 mvn clean install
 
 ## Deploy to Tomcat
-Copy MathClient.war, MathProxy.war, MathSimpleBackend.war and MathComplexBackend.war files found in the "<project>/target" directory to the Tomcat webapp directory.  
+Copy MathClient.war, MathProxy.war, MathSimpleBackend.war and MathComplexBackend.war files found in the "%project%/target" directory to the Tomcat webapp directory.  
 
-Restart Tomcat and goto: http://<host>:<port>/MathClient
+Restart Tomcat and goto: http://%host%:%port%/MathClient
 
 ## Update Tomcat User Login Information
 Update the tomcat-users.xml file with details in config/tomcat-users.xml.toAddtoTomcatConfig
 
 ### Useful URLs:
-MathClient WebApp: http://host:<port>/MathClient
+MathClient WebApp: http://%host%:%port%/MathClient
 
 MathProxy RestAPI's:
 http://localhost:8080/MathProxy/rest/hello
