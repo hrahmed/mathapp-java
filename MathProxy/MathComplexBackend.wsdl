@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns="http://complex.math.com" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://complex.math.com">
+    <wsdl:documentation>
+		Please Type your service description here
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://complex.math.com">
+            <xs:element name="calculateMean">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="calculateMeanResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="calculateMedian">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="calculateMedianResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="calculateMode">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="calculateModeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="process">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="value1" type="xs:long"/>
+                        <xs:element minOccurs="0" name="value2" type="xs:long"/>
+                        <xs:element minOccurs="0" name="operation" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="processResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="calculateModeRequest">
+        <wsdl:part element="ns:calculateMode" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="calculateModeResponse">
+        <wsdl:part element="ns:calculateModeResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="calculateMedianRequest">
+        <wsdl:part element="ns:calculateMedian" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="calculateMedianResponse">
+        <wsdl:part element="ns:calculateMedianResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="processRequest">
+        <wsdl:part element="ns:process" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="processResponse">
+        <wsdl:part element="ns:processResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="calculateMeanRequest">
+        <wsdl:part element="ns:calculateMean" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="calculateMeanResponse">
+        <wsdl:part element="ns:calculateMeanResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="MathComplexBackendPortType">
+        <wsdl:operation name="calculateMode">
+            <wsdl:input message="ns:calculateModeRequest" wsaw:Action="urn:calculateMode"/>
+            <wsdl:output message="ns:calculateModeResponse" wsaw:Action="urn:calculateModeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMedian">
+            <wsdl:input message="ns:calculateMedianRequest" wsaw:Action="urn:calculateMedian"/>
+            <wsdl:output message="ns:calculateMedianResponse" wsaw:Action="urn:calculateMedianResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="process">
+            <wsdl:input message="ns:processRequest" wsaw:Action="urn:process"/>
+            <wsdl:output message="ns:processResponse" wsaw:Action="urn:processResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMean">
+            <wsdl:input message="ns:calculateMeanRequest" wsaw:Action="urn:calculateMean"/>
+            <wsdl:output message="ns:calculateMeanResponse" wsaw:Action="urn:calculateMeanResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="MathComplexBackendSoap11Binding" type="ns:MathComplexBackendPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="calculateMode">
+            <soap:operation soapAction="urn:calculateMode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMedian">
+            <soap:operation soapAction="urn:calculateMedian" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="process">
+            <soap:operation soapAction="urn:process" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMean">
+            <soap:operation soapAction="urn:calculateMean" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="MathComplexBackendSoap12Binding" type="ns:MathComplexBackendPortType">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="calculateMode">
+            <soap12:operation soapAction="urn:calculateMode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMedian">
+            <soap12:operation soapAction="urn:calculateMedian" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="process">
+            <soap12:operation soapAction="urn:process" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMean">
+            <soap12:operation soapAction="urn:calculateMean" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="MathComplexBackendHttpBinding" type="ns:MathComplexBackendPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="calculateMode">
+            <http:operation location="MathComplexBackend/calculateMode"/>
+            <wsdl:input>
+                <mime:content part="calculateMode" type="text/xml"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content part="calculateMode" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMedian">
+            <http:operation location="MathComplexBackend/calculateMedian"/>
+            <wsdl:input>
+                <mime:content part="calculateMedian" type="text/xml"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content part="calculateMedian" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="process">
+            <http:operation location="MathComplexBackend/process"/>
+            <wsdl:input>
+                <mime:content part="process" type="text/xml"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content part="process" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateMean">
+            <http:operation location="MathComplexBackend/calculateMean"/>
+            <wsdl:input>
+                <mime:content part="calculateMean" type="text/xml"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content part="calculateMean" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="MathComplexBackend">
+        <wsdl:port binding="ns:MathComplexBackendSoap11Binding" name="MathComplexBackendHttpSoap11Endpoint">
+            <soap:address location="http://localhost:8080/MathComplexBackend/services/MathComplexBackend.MathComplexBackendHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port binding="ns:MathComplexBackendSoap12Binding" name="MathComplexBackendHttpSoap12Endpoint">
+            <soap12:address location="http://localhost:8080/MathComplexBackend/services/MathComplexBackend.MathComplexBackendHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port binding="ns:MathComplexBackendHttpBinding" name="MathComplexBackendHttpEndpoint">
+            <http:address location="http://localhost:8080/MathComplexBackend/services/MathComplexBackend.MathComplexBackendHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

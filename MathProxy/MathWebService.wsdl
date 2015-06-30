@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s0:definitions targetNamespace="http://mathws.org/" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://mathws.org/" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <s0:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mathws.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://mathws.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <s:element name="Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="num1" type="s:long"/>
+            <s:element maxOccurs="1" minOccurs="1" name="num2" type="s:long"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="AddResult" type="s:long"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Multiply">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="num1" type="s:long"/>
+            <s:element maxOccurs="1" minOccurs="1" name="num2" type="s:long"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MultiplyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="1" name="MultiplyResult" type="s:long"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </s0:types>
+  <s0:message name="AddSoapIn">
+    <s0:part element="s1:Add" name="parameters"/>
+  </s0:message>
+  <s0:message name="AddSoapOut">
+    <s0:part element="s1:AddResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="MultiplySoapIn">
+    <s0:part element="s1:Multiply" name="parameters"/>
+  </s0:message>
+  <s0:message name="MultiplySoapOut">
+    <s0:part element="s1:MultiplyResponse" name="parameters"/>
+  </s0:message>
+  <s0:portType name="MathWebServiceSoap">
+    <s0:operation name="Add">
+      <s0:input message="s1:AddSoapIn"/>
+      <s0:output message="s1:AddSoapOut"/>
+    </s0:operation>
+    <s0:operation name="Multiply">
+      <s0:input message="s1:MultiplySoapIn"/>
+      <s0:output message="s1:MultiplySoapOut"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="MathWebServiceSoap" type="s1:MathWebServiceSoap">
+    <s2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="Add">
+      <s2:operation soapAction="http://mathws.org/Add" style="document"/>
+      <s0:input>
+        <s2:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="Multiply">
+      <s2:operation soapAction="http://mathws.org/Multiply" style="document"/>
+      <s0:input>
+        <s2:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:binding name="MathWebServiceSoap12" type="s1:MathWebServiceSoap">
+    <s3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="Add">
+      <s3:operation soapAction="http://mathws.org/Add" style="document"/>
+      <s0:input>
+        <s3:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s3:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="Multiply">
+      <s3:operation soapAction="http://mathws.org/Multiply" style="document"/>
+      <s0:input>
+        <s3:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s3:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="MathWebService">
+    <s0:port binding="s1:MathWebServiceSoap" name="MathWebServiceSoap">
+      <s2:address location="http://localhost/MathWebService/MathWebService.asmx"/>
+    </s0:port>
+    <s0:port binding="s1:MathWebServiceSoap12" name="MathWebServiceSoap12">
+      <s3:address location="http://localhost/MathWebService/MathWebService.asmx"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>

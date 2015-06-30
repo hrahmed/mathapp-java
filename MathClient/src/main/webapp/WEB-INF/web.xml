@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>MathClient-delete</display-name>
+  <welcome-file-list>
+    <welcome-file>operation.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MathClientServlet</display-name>
+    <servlet-name>MathClientServlet</servlet-name>
+    <servlet-class>com.client.math.MathClientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MathClientServlet</servlet-name>
+    <url-pattern>/MathClientServlet</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>A Protected Page</web-resource-name>
+      <url-pattern>/operation.jsp</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>math</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-role>
+    <role-name> math</role-name>
+  </security-role>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <servlet>
+    <description></description>
+    <display-name>MathComplexServlet</display-name>
+    <servlet-name>MathComplexServlet</servlet-name>
+    <servlet-class>com.client.math.MathComplexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MathComplexServlet</servlet-name>
+    <url-pattern>/MathComplexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MathDotNetServlet</display-name>
+    <servlet-name>MathDotNetServlet</servlet-name>
+    <servlet-class>com.client.math.MathDotNetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MathDotNetServlet</servlet-name>
+    <url-pattern>/MathDotNetServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
