@@ -22,9 +22,23 @@ Tomcat 6 & 7
 git clone https://github.com/hrahmed/mathapp-java.git
 
 ## Build for each project:
+Example:
 cd MathClient
 mvn clean install
-etc..
+
+cd MathProxy
+mvn clean install
+
+cd MathSimpleBackend
+mvn clean install
+
+cd MathComplexBackend
+mvn clean install
+
+## Deploy to Tomcat
+Copy MathClient.war, MathProxy.war, MathSimpleBackend.war and MathComplexBackend.war files found in the "<project>/target" directory to the Tomcat webapp directory.  
+
+Restart Tomcat and goto: http://<host>:<port>/MathClient
 
 ## Update Tomcat User Login Information
 Update the tomcat-users.xml file with details in config/tomcat-users.xml.toAddtoTomcatConfig
