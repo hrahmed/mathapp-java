@@ -41,7 +41,7 @@ Copy MathClient.war, MathProxy.war, MathSimpleBackend.war and MathComplexBackend
 Restart Tomcat and goto: http://%host%:%port%/MathClient
 
 ## Update Tomcat User Login Information
-Update the tomcat-users.xml file with details in config/tomcat-users.xml.toAddtoTomcatConfig
+Update the tomcat-users.xml file with details in "config/tomcat-users.xml.toAddtoTomcatConfig"
 
 ### Useful URLs:
 MathClient WebApp: http://%host%:%port%/MathClient
