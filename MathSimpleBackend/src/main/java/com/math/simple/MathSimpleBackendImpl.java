@@ -9,26 +9,31 @@ public class MathSimpleBackendImpl {
 			
 		if (opdata.getOperation().equalsIgnoreCase("ADD")) {
 			Add add = new Add(opdata.getValue1(), opdata.getValue2());
-			MathUtility.doSleep(2);
+			//MathUtility.doSleep(2);
+			MathUtility.doSleepRange(500, 2500);
 			setResult(add.doAdd());
 			
 		} else if (opdata.getOperation().equalsIgnoreCase("SUBTRACT")) {
 			Subtract sub = new Subtract(opdata.getValue1(), opdata.getValue2());
-			MathUtility.doSleep(2);
+			//MathUtility.doSleep(2);
+			MathUtility.doSleepRange(500, 2500);
 			setResult(sub.doSubtract());
 
 		} else if (opdata.getOperation().equalsIgnoreCase("MULTIPLY")){
 			Multiply mult = new Multiply(opdata.getValue1(), opdata.getValue2());
-			MathUtility.doSleep(4);
+			//MathUtility.doSleep(4);
+			MathUtility.doSleepRange(2500, 4000);
 			setResult(mult.doMultiply());
 
 		} else if (opdata.getOperation().equalsIgnoreCase("DIVIDE")){
 			Divide div = new Divide(opdata.getValue1(), opdata.getValue2());
-			MathUtility.doSleep(2);
+			//MathUtility.doSleep(2);
+			MathUtility.doSleepRange(500, 2500);
 			setResult(div.doDivide());
 
 		} else if (opdata.getOperation().equalsIgnoreCase("STALL")){
-			MathUtility.doSleep(50);
+			//MathUtility.doSleep(50);
+			MathUtility.doSleepRange(31000, 50000);
 			setResult(0);
 			
 		} else {
