@@ -73,7 +73,7 @@
 		<groupId>com.googlecode.json-simple</groupId>
 		<artifactId>json-simple</artifactId>
 		<version>1.1.1</version>
-	</dependency> 
+	</dependency>
 	<dependency>
 		<groupId>org.apache.axis</groupId>
 		<artifactId>axis</artifactId>
@@ -87,5 +87,14 @@
   </dependencies>
   <build>
     <finalName>MathProxy</finalName>
+    <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <configuration>
+                  <outputDirectory>deploy/</outputDirectory>
+              </configuration>
+          </plugin>
+    </plugins>
   </build>
 </project>
