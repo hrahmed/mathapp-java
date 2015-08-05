@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 
+import com.math.simple.MathUtility;
+
 public class MathComplexBackend {
 
 	private SortCache toSort;
@@ -32,12 +34,8 @@ public class MathComplexBackend {
 				e.printStackTrace();
 			}
 		} else {
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//Thread.sleep(2000);
+			MathUtility.doSleepRange(500, 2500);
 		}
 
 		long sum = 0;
@@ -56,12 +54,8 @@ public class MathComplexBackend {
 			MathProperties.setProperties();
 		}
 
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//Thread.sleep(2000);
+		MathUtility.doSleepRange(500, 2500);
 
 		//Arrays.sort(values);
 
@@ -84,12 +78,8 @@ public class MathComplexBackend {
 			MathProperties.setProperties();
 		}
 
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//Thread.sleep(2000);
+		MathUtility.doSleepRange(500, 2500);
 
 		long maxValue = 0 ,maxCount = 0;
 
