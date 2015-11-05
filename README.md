@@ -45,6 +45,9 @@ Update the tomcat-users.xml file with details in "config/tomcat-users.xml.toAddt
 
 ### Useful URLs:
 MathClient WebApp: http://%host%:%port%/MathClient
+# Login with:
+Login: user
+Password: math
 
 MathProxy RestAPI's:
 http://localhost:8080/MathProxy/rest/hello
