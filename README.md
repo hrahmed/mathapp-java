@@ -21,6 +21,10 @@ Tomcat 6 & 7
 ## To download project:
 git clone https://github.com/hrahmed/mathapp-java.git
 
+## Build all projects:
+In main directory
+mvn clean install
+
 ## Build for each project:
 Example:
 cd MathClient
