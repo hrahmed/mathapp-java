@@ -162,6 +162,17 @@ public class MathRestProxy {
 		} 
 		return "Bad Math";
 	}
+	
+	@GET
+	@Path("/mathnode")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String mathNodeBackend(
+			@DefaultValue("blank") @QueryParam("operation") String operation,
+			@DefaultValue("0") @QueryParam("value1") int value1,
+			@DefaultValue("0") @QueryParam("value2") int value2) {
+		
+		return "Hello with: " + operation;
+	}
 
 	@GET
 	@Path("/math")

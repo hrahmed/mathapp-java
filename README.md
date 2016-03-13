@@ -62,6 +62,7 @@ http://localhost:8080/MathProxy/rest/hello/mathcomplex?operation=flush&value1=5&
 http://localhost:8080/MathProxy/rest/hello/mathcomplex?operation=mean&values=5,10,15
 http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=add&value1=5&value2=10
 http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=multiply&value1=5&value2=10
+http://localhost:8080/MathProxy/rest/hello/mathnode?operation=add&value1=5&value2=10
 
 dotNet API's:
 http://localhost/MathWebService/MathWebService.asmx?WSDL
