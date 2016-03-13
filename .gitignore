@@ -22,6 +22,7 @@ local.properties
 .settings/
 .loadpath
 *~.classpath
+.classpath
 .project
 
 # External tool builders
