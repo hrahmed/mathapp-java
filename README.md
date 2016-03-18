@@ -64,6 +64,10 @@ http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=add&value1=5&val
 http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=multiply&value1=5&value2=10
 http://localhost:8080/MathProxy/rest/hello/mathnode?operation=add&value1=5&value2=10
 
+Node Server API:
+http://localhost:8999/api/math/subtract?value1=33&value2=22
+
+
 dotNet API's:
 http://localhost/MathWebService/MathWebService.asmx?WSDL
 http://localhost/MathWebService/MathWebService.asmx

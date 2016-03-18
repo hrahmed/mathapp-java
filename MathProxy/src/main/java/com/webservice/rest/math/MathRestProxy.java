@@ -1,8 +1,16 @@
 package com.webservice.rest.math;
 
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.HttpURLConnection;
+import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
@@ -39,6 +47,7 @@ import com.math.complex.MathComplexBackendStub.CalculateModeResponse;
 import com.math.simple.MathSimpleBackendStub;
 import com.math.simple.MathSimpleBackendStub.Process;
 import com.math.simple.MathSimpleBackendStub.ProcessResponse;
+import com.mathapp.utilities.HttpRequestHelper;
 import com.mathapp.utilities.JsonHelperForMathApp;
 import com.mathapp.utilities.MathResponseData;
 
@@ -74,16 +83,16 @@ public class MathRestProxy {
 		complexHost = props.getProperty("complexhost");
 		dotNetPort = props.getProperty("dotnetport");
 		dotNetHost = props.getProperty("dotnethost");
-		
+
 		try {
 			simpleStub = new MathSimpleBackendStub( "http://" + simpleHost + ":" +
 					simplePort	+
-			"/MathSimpleBackend/services/MathSimpleBackend.MathSimpleBackendHttpSoap12Endpoint/");
+					"/MathSimpleBackend/services/MathSimpleBackend.MathSimpleBackendHttpSoap12Endpoint/");
 
 			complexStub = new MathComplexBackendStub( "http://" + complexHost + ":" +
 					complexPort	+ 
 					"/MathComplexBackend/services/MathComplexBackend.MathComplexBackendHttpSoap12Endpoint/");
-			
+
 			// For dotNet call
 			Service service = new Service();
 			String endpoint = "http://" + dotNetHost + ":" +
@@ -98,10 +107,10 @@ public class MathRestProxy {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			// required for MathComplexBackend, increases client connections from 2 (default) 
 			ConfigurationContext configurationContext = 
-				ConfigurationContextFactory.createEmptyConfigurationContext();
+					ConfigurationContextFactory.createEmptyConfigurationContext();
 
 			MultiThreadedHttpConnectionManager multiThreadedHttpConnectionManager = new MultiThreadedHttpConnectionManager(); 
 
@@ -162,7 +171,9 @@ public class MathRestProxy {
 		} 
 		return "Bad Math";
 	}
-	
+
+
+	// Process he Node backend
 	@GET
 	@Path("/mathnode")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -170,10 +181,33 @@ public class MathRestProxy {
 			@DefaultValue("blank") @QueryParam("operation") String operation,
 			@DefaultValue("0") @QueryParam("value1") int value1,
 			@DefaultValue("0") @QueryParam("value2") int value2) {
+
+		HttpRequestHelper httpReq = new HttpRequestHelper();
+		String response;
 		
+		// set post parameters
+		String urlParameters = 
+				"operation=" + operation + 
+				"&value1=" + value1 +
+				"&value2=" + value2;
+
+
+		try {
+			response = httpReq.sendPost("http://localhost:8999/api/math", urlParameters);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response = e.getMessage();
+		}
+
+		System.out.println("\nOutput: \n" + response);
+
 		return "Hello with: " + operation;
 	}
 
+
+
+	// MathComplex Code
 	@GET
 	@Path("/math")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -192,7 +226,7 @@ public class MathRestProxy {
 			response.setStatus("bronze");
 
 		} else if (operation.compareToIgnoreCase("average") == 0){
-			
+
 			Average avg = new Average();
 			try {
 				avg.calculateAverage(operation, value1, value2);
@@ -329,45 +363,45 @@ public class MathRestProxy {
 				for (int i = 0; i < stringValues.length; i++) {
 					longValues[i]=Long.valueOf(stringValues[i]);
 				}
-				
+
 				Remote remote = new Remote(longValues[0]);
 				Local local = new Local(longValues[2]);
-				
+
 				for (int i = 0; i < longValues[1]; i++) {
 					remote.execute();
 				}
-				
+
 				for (int i = 0; i < longValues[3]; i++) {
 					local.execute();
 				}
 
-				
+
 			} else if(operation.compareToIgnoreCase("PYTHON")==0) {
-				
+
 				String[] stringValues = values.split(",");
 				long[] longValues = new long[stringValues.length];
 				for (int i = 0; i < stringValues.length; i++) {
 					longValues[i]=Long.valueOf(stringValues[i]);
 				}
-				
+
 				Remote remote = new Remote(longValues[0]);
 				remote.execute();
-				
+
 				Local local = new Local(longValues[1]);
 				local.execute();
-				
+
 			}
-			
-			
-			
-			
+
+
+
+
 			return result.toString();
 		}
 
 		return result.toString();
 
 	}
-	
+
 	@GET
 	@Path("/mathdotnet")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -381,7 +415,7 @@ public class MathRestProxy {
 		MathResponseData response = new MathResponseData();
 
 		if (operation.compareToIgnoreCase("add") == 0) {
-			
+
 			try {
 				result = (Long) dotNetStub.add(value1, value2);
 			} catch (RemoteException e) {
@@ -391,7 +425,7 @@ public class MathRestProxy {
 
 
 		} else if (operation.compareToIgnoreCase("multiply") == 0){
-			
+
 			try {
 				result = (Long) dotNetStub.multiply(value1, value2);
 			} catch (RemoteException e) {
@@ -399,11 +433,11 @@ public class MathRestProxy {
 				e.printStackTrace();
 			}
 
-			
+
 		} else {
 			result = null;
 		}
-		
+
 		if (result != null){
 			response.setResult(result);
 			// calculate status
