@@ -12,9 +12,9 @@ public class HttpRequestHelper {
 	private final String USER_AGENT = "Mozilla/5.0";
 
 	// HTTP GET request
-	public String sendGet(String myUrl) throws Exception {
+	public String sendGet(String myUrl, String urlParameters) throws Exception {
 
-		String url = myUrl;
+		String url = myUrl + '?' + urlParameters;
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();

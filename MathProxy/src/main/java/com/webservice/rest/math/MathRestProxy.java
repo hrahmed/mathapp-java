@@ -175,9 +175,9 @@ public class MathRestProxy {
 
 	// Process he Node backend
 	@GET
-	@Path("/mathnode")
+	@Path("/mathnodesimple")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String mathNodeBackend(
+	public String mathNodeSimpleBackend(
 			@DefaultValue("blank") @QueryParam("operation") String operation,
 			@DefaultValue("0") @QueryParam("value1") int value1,
 			@DefaultValue("0") @QueryParam("value2") int value2) {
@@ -191,6 +191,36 @@ public class MathRestProxy {
 				"&value1=" + value1 +
 				"&value2=" + value2;
 
+
+		try {
+			//response = httpReq.sendPost("http://localhost:8999/api/math", urlParameters);
+			response = httpReq.sendGet("http://localhost:8999/api/math", urlParameters);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response = e.getMessage();
+		}
+
+		System.out.println("\nOutput: \n" + response);
+
+		return "Hello with: " + response;
+	}
+	
+	@GET
+	@Path("/mathnodecomplex")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String mathNodeComplexBackend(
+			@DefaultValue("blank") @QueryParam("operation") String operation,
+			@DefaultValue("0") @QueryParam("values") int values) {
+
+		HttpRequestHelper httpReq = new HttpRequestHelper();
+		String response;
+		
+		// set post parameters
+		String urlParameters = 
+				"operation=" + operation + 
+				"&values=" + values;
 
 		try {
 			response = httpReq.sendPost("http://localhost:8999/api/math", urlParameters);

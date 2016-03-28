@@ -66,6 +66,7 @@ http://localhost:8080/MathProxy/rest/hello/mathnode?operation=add&value1=5&value
 
 Node Server API:
 http://localhost:8999/api/math/subtract?value1=33&value2=22
+http://localhost:8080/MathProxy/rest/hello/mathnodesimple?operation=sqrt&value1=25&value2=103
 
 
 dotNet API's:
