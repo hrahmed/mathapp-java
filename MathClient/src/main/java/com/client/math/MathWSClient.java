@@ -90,5 +90,25 @@ public class MathWSClient {
 
 		return responseString;
 	}
+	
+	public String getMathNodeSimple(String operation, int value1, int value2) throws ClientProtocolException, IOException {
+
+		String url = "http://" + host + ":" + port +
+									"/MathProxy/rest/hello/mathnodesimple?" +
+									"operation=" + operation +
+									"&value1=" + value1 + 
+									"&value2=" + value2;
+
+		HttpClient httpClient = new DefaultHttpClient();
+
+		HttpGet httpGet = new HttpGet(url);
+		HttpResponse httpResponse = httpClient.execute(httpGet);
+
+		HttpEntity entity = httpResponse.getEntity();
+
+		String responseString = EntityUtils.toString(entity);
+
+		return responseString;
+	}
 
 }

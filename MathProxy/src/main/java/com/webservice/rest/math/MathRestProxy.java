@@ -33,6 +33,9 @@ import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.mathws.MathWebServiceSoapStub;
 
 import com.math.Local;
@@ -183,7 +186,12 @@ public class MathRestProxy {
 			@DefaultValue("0") @QueryParam("value2") int value2) {
 
 		HttpRequestHelper httpReq = new HttpRequestHelper();
-		String response;
+		String nodeResponse;
+		
+		//
+		Long result = (long) 0;
+		JsonHelperForMathApp jsonHelperForMathApp = new JsonHelperForMathApp();
+		MathResponseData response = new MathResponseData();
 		
 		// set post parameters
 		String urlParameters = 
@@ -194,17 +202,33 @@ public class MathRestProxy {
 
 		try {
 			//response = httpReq.sendPost("http://localhost:8999/api/math", urlParameters);
-			response = httpReq.sendGet("http://localhost:8999/api/math", urlParameters);
+			nodeResponse = httpReq.sendGet("http://localhost:8999/api/math", urlParameters);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			response = e.getMessage();
+			nodeResponse = e.getMessage();
 		}
 
-		System.out.println("\nOutput: \n" + response);
+		//return "Hello with: " + nodeResponse;
+		
+		//parse json and get response
+		
+		Long mathResponse = null;
+		JSONObject json;
+		try {
+			json = (JSONObject)new JSONParser().parse(nodeResponse);
+		    mathResponse = (Long)json.get("response");
 
-		return "Hello with: " + response;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		response.setStatus("Gold");
+		response.setResult(mathResponse);
+		
+		return jsonHelperForMathApp.createJsonAsString(response);
 	}
 	
 	@GET

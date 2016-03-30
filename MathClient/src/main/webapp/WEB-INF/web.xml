@@ -53,4 +53,14 @@
     <servlet-name>MathDotNetServlet</servlet-name>
     <url-pattern>/MathDotNetServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MathNodeServlet</display-name>
+    <servlet-name>MathNodeServlet</servlet-name>
+    <servlet-class>com.client.math.MathNodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MathNodeServlet</servlet-name>
+    <url-pattern>/MathNodeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
