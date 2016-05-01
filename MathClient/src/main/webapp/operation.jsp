@@ -21,7 +21,7 @@ Welcome  <%session.getAttribute("UserName");%>
 <a href="logout.jsp"><b>Logout</b></a>
 <hr>
 <hr>
-<h3>Simple</h3>
+<h3>Simple Java</h3>
 <FORM ACTION="/MathClient/MathClientServlet"
       METHOD="POST">
   Operation:
@@ -32,6 +32,28 @@ Welcome  <%session.getAttribute("UserName");%>
 	<OPTION VALUE="divide">Divide
 	<OPTION VALUE="stall">Stall
 	<OPTION VALUE="error">Error
+  </SELECT>
+  <br>
+  Value1:
+  <INPUT TYPE="TEXT" NAME="value1">
+  Value2:
+  <INPUT TYPE="TEXT" NAME="value2">
+  <BR>
+  <INPUT TYPE="SUBMIT" VALUE="Submit">
+  <input type="reset" value="Reset" name="reset">
+</FORM>
+<hr>
+<hr>
+<h3>Simple Node</h3>
+<FORM ACTION="/MathClient/MathNodeServlet"
+      METHOD="POST">
+  Operation:
+  <SELECT NAME="operation">
+	<OPTION VALUE="add">Add
+	<OPTION VALUE="subtract">Subtract
+	<OPTION VALUE="multiply">Multiply
+	<OPTION VALUE="divide">Divide
+	<OPTION VALUE="sqrt">Square Root
   </SELECT>
   <br>
   Value1:
@@ -89,11 +111,14 @@ Welcome  <%session.getAttribute("UserName");%>
 	  out.println("  " + request.getAttribute("oper")
 			  + " for (" + request.getAttribute("vs") + ")"
 			  + " = " + request.getAttribute("complexresult"));
-  }else if (request.getAttribute("result") != null){
+  } else if (request.getAttribute("result") != null){
 	  out.println("  " + request.getAttribute("v1") 
 			  + " " + request.getAttribute("oper")
 			  + " " + request.getAttribute("v2")
 			  + " = " + request.getAttribute("result"));
+	  out.println("\nStatus= " + request.getAttribute("status"));
+  } else if (request.getAttribute("noderesult") != null) {
+	  out.println(request.getAttribute("noderesult"));
 	  out.println("\nStatus= " + request.getAttribute("status"));
   }
   %>

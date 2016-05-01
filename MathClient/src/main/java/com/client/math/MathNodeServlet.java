@@ -48,8 +48,8 @@ public class MathNodeServlet extends HttpServlet {
 
 		MathResponseData responseData = jsonHelperForMathApp.getMathResponse(responseString);
 		
-		System.out.println("Result is: " + responseData.getResult());
-		System.out.println("Status is: " + responseData.getStatus());
+		//System.out.println("Result is: " + responseData.getResult());
+		//System.out.println("Status is: " + responseData.getStatus());
 	    
 	    
 	    request.setAttribute("result", responseData.getResult());
@@ -65,8 +65,30 @@ public class MathNodeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write(
-		        "<html><body>Hello from doPost!</body></html>");	
-		}
+		MathWSClient wsClient = new MathWSClient();
+		
+		//request.setAttribute("operation", request.getParameter("operation"));
+	    request.setAttribute("v1", request.getParameter("value1"));
+	    request.setAttribute("v2", request.getParameter("value2"));
+	    
+	    String responseString = wsClient.getMathNodeSimple(request.getParameter("operation"),
+				ServletUtilities.getIntParameter(request, "value1", 0),
+				ServletUtilities.getIntParameter(request, "value2", 0));
+	    
+//		XmlHelperForMathApp xmlHelperForMathApp = new XmlHelperForMathApp();
+		JsonHelperForMathApp jsonHelperForMathApp = new JsonHelperForMathApp();
+
+		MathResponseData responseData = jsonHelperForMathApp.getMathResponse(responseString);
+		
+		//System.out.println("Result is: " + responseData.getResult());
+		//System.out.println("Status is: " + responseData.getStatus());
+	    
+	    
+	    request.setAttribute("noderesult", responseData.getResult());
+	    request.setAttribute("status", responseData.getStatus());
+	    
+	    RequestDispatcher rd = getServletContext().getRequestDispatcher("/operation.jsp");
+	    rd.forward(request, response);
+	}
 
 }
