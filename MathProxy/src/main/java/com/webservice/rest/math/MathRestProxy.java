@@ -257,6 +257,7 @@ public class MathRestProxy {
 
 		// set post parameters
 		String url = "http://" + nodeBackendHost + ":" + nodeBackendPort + "/api/math";
+		//System.out.println("*** Proxy URL is: " + url);
 		String urlParameters = 
 				"operation=" + operation + 
 				"&value1=" + value1 +

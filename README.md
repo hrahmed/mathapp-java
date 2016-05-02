@@ -15,8 +15,25 @@ Tomcat 6 & 7
 
 ### Configuration:
 ## MathApp Port Configuration:
+
+# Option 1 - preferred - noted below are default values
+Pass in -D parameters
+MathClient:
+-DproxyPort="8080"
+-DproxyHost="localhost"
+
+MathProxy:
+-DnodeHost="localhost"
+-DnodePort="8999"
+-DsimpleHost="localhost"
+-DsimplePort="8080"
+-DcomplexHost="localhost"
+-DcomplexPort="8080"
+
+
+# Option 2
 - MathClient --> MathProxy, MathProxy host/port configuration is in math.properties found in the "MathClient/WEB-INF/classes"
-- MathProxy --> MathSimpleBackend, MathComplexBackend, .NetBackend. The host/port configuration is in math.properties found in the "MathProxy/WEB-INF/classes"
+- MathProxy --> MathSimpleBackend, MathComplexBackend, .NetBackend, nodeBackend. The host/port configuration is in math.properties found in the "MathProxy/WEB-INF/classes"
 
 ## To download project:
 git clone https://github.com/hrahmed/mathapp-java.git

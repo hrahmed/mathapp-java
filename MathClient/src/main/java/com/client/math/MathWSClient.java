@@ -118,6 +118,8 @@ public class MathWSClient {
 									"&value1=" + value1 + 
 									"&value2=" + value2;
 
+		//System.out.println("*** Client url is: " + url);
+		
 		HttpClient httpClient = new DefaultHttpClient();
 
 		HttpGet httpGet = new HttpGet(url);
