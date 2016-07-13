@@ -1,4 +1,4 @@
-#### mathapp-java
+# mathapp-java
 There are 4 java Applications in MathApp:
 - MathClient - web client
 - MathProxy - Jersey RestFul API proxy
@@ -10,22 +10,22 @@ MathProxy calls MathSimpleBackend
 MathProxy calls MathComplexBackend
 MathProxy also calls a .Net backend if using the "mathdotnet" RestFul API.
 
-### Tested Environments
+# Tested Environments
 Tomcat 6 & 7
 
-### Configuration:
-## MathApp Port Configuration:
+## Configuration:
+### MathApp Port Configuration:
 - MathClient --> MathProxy, MathProxy host/port configuration is in math.properties found in the "MathClient/WEB-INF/classes"
 - MathProxy --> MathSimpleBackend, MathComplexBackend, .NetBackend. The host/port configuration is in math.properties found in the "MathProxy/WEB-INF/classes"
 
-## To download project:
+### To download project:
 git clone https://github.com/hrahmed/mathapp-java.git
 
-## Build all projects:
+### Build all projects:
 In main directory
 mvn clean install
 
-## Build for each project:
+### Build for each project:
 Example:
 cd MathClient
 mvn clean install
@@ -39,17 +39,17 @@ mvn clean install
 cd MathComplexBackend
 mvn clean install
 
-## Deploy to Tomcat
+### Deploy to Tomcat
 Copy MathClient.war, MathProxy.war, MathSimpleBackend.war and MathComplexBackend.war files found in the "%project%/target" directory to the Tomcat webapp directory.  
 
 Restart Tomcat and goto: http://%host%:%port%/MathClient
 
-## Update Tomcat User Login Information
+### Update Tomcat User Login Information
 Update the tomcat-users.xml file with details in "config/tomcat-users.xml.toAddtoTomcatConfig"
 
-### Useful URLs:
+## Useful URLs:
 MathClient WebApp: http://%host%:%port%/MathClient
-# Login with:
+### Login with:
 Login: user
 Password: math
 
