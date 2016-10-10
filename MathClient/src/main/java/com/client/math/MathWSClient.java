@@ -17,17 +17,36 @@ public class MathWSClient {
 	public int value2;
 	private String port;
 	private String host;
+	private final String PROXY_HOST = "proxyHost";
+	private final String PROXY_PORT = "proxyPort";
 
 	public MathWSClient() {
 		
+		// get properties from 'System', passed in using -D
+		Properties systemProps = System.getProperties();
+		
+		// get properties from config file
 		Properties props = new Properties();
 		try {
 			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("mathapp.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		port = props.getProperty("port");
-		host = props.getProperty("host");
+		
+		// get properties
+		if (systemProps.getProperty(PROXY_HOST) != null) {
+			host = systemProps.getProperty(PROXY_HOST);
+		} else {
+			host = props.getProperty("host");
+		}
+
+		
+		if (systemProps.getProperty(PROXY_PORT) != null) {
+			port = systemProps.getProperty(PROXY_PORT);
+		} else {
+			port = props.getProperty("port");
+		}
+		
 		//System.out.println("MathProxy Port Used: " + port);
 
 	}
@@ -78,7 +97,29 @@ public class MathWSClient {
 									"operation=" + operation +
 									"&value1=" + value1 + 
 									"&value2=" + value2;
+		
+		HttpClient httpClient = new DefaultHttpClient();
 
+		HttpGet httpGet = new HttpGet(url);
+		HttpResponse httpResponse = httpClient.execute(httpGet);
+
+		HttpEntity entity = httpResponse.getEntity();
+
+		String responseString = EntityUtils.toString(entity);
+
+		return responseString;
+	}
+	
+	public String getMathNodeSimple(String operation, int value1, int value2) throws ClientProtocolException, IOException {
+
+		String url = "http://" + host + ":" + port +
+									"/MathProxy/rest/hello/mathnodesimple?" +
+									"operation=" + operation +
+									"&value1=" + value1 + 
+									"&value2=" + value2;
+
+		//System.out.println("*** Client url is: " + url);
+		
 		HttpClient httpClient = new DefaultHttpClient();
 
 		HttpGet httpGet = new HttpGet(url);

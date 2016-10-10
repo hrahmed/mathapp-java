@@ -13,10 +13,32 @@ MathProxy also calls a .Net backend if using the "mathdotnet" RestFul API.
 # Tested Environments
 Tomcat 6 & 7
 
+<<<<<<< HEAD
+### Configuration:
+## MathApp Port Configuration:
+
+# Option 1 - preferred - noted below are default values
+Pass in -D parameters
+MathClient:
+-DproxyPort="8080"
+-DproxyHost="localhost"
+
+MathProxy:
+-DnodeHost="localhost"
+-DnodePort="8999"
+-DsimpleHost="localhost"
+-DsimplePort="8080"
+-DcomplexHost="localhost"
+-DcomplexPort="8080"
+
+
+# Option 2
+=======
 ## Configuration:
 ### MathApp Port Configuration:
+>>>>>>> master
 - MathClient --> MathProxy, MathProxy host/port configuration is in math.properties found in the "MathClient/WEB-INF/classes"
-- MathProxy --> MathSimpleBackend, MathComplexBackend, .NetBackend. The host/port configuration is in math.properties found in the "MathProxy/WEB-INF/classes"
+- MathProxy --> MathSimpleBackend, MathComplexBackend, .NetBackend, nodeBackend. The host/port configuration is in math.properties found in the "MathProxy/WEB-INF/classes"
 
 ### To download project:
 git clone https://github.com/hrahmed/mathapp-java.git
@@ -62,6 +84,12 @@ http://localhost:8080/MathProxy/rest/hello/mathcomplex?operation=flush&value1=5&
 http://localhost:8080/MathProxy/rest/hello/mathcomplex?operation=mean&values=5,10,15
 http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=add&value1=5&value2=10
 http://localhost:8080/MathProxy/rest/hello/mathdotnet?operation=multiply&value1=5&value2=10
+http://localhost:8080/MathProxy/rest/hello/mathnode?operation=add&value1=5&value2=10
+
+Node Server API:
+http://localhost:8999/api/math/subtract?value1=33&value2=22
+http://localhost:8080/MathProxy/rest/hello/mathnodesimple?operation=sqrt&value1=25&value2=103
+
 
 dotNet API's:
 http://localhost/MathWebService/MathWebService.asmx?WSDL
