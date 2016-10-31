@@ -11,7 +11,9 @@
 				var v1 = $("#value1").val();
 				var v2 = $("#value2").val();
 				var op = $("#operation").val();
-				var url = 'http://localhost:8080/MathProxy/rest/hello/math?operation='+op+'&value1='+v1+'&value2='+v2;
+				var ho = $("#host").val();
+				var po = $("#port").val();
+				var url = 'http://'+ho+':'+po+'/MathProxy/rest/hello/math?operation='+op+'&value1='+v1+'&value2='+v2;
 			$.getJSON(url, function(jd) {   	   
                   //$('#stage').html('<p> Origin: ' + jd.origin + '</p>');
                   //$('#stage').append('<p>Origin 2 : ' + jd.origin+ '</p>');
@@ -27,6 +29,11 @@
 	
       <p>Click on the button to load result.json file −</p>
 			
+	  Host:
+	  <INPUT TYPE="TEXT" NAME="host" id="host">
+	  Port:
+	  <INPUT TYPE="TEXT" NAME="port" id="port">
+	  <BR>
 	  Operation:
 	  <SELECT NAME="operation" id="operation">
 		<OPTION VALUE="add">Add
