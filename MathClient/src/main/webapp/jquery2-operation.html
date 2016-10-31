@@ -1,0 +1,56 @@
+<html>
+
+   <head>
+      <title>The jQuery Example</title>
+      <script type = "text/javascript" 
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		
+      <script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+            $("#driver").click(function(event){
+				var v1 = $("#value1").val();
+				var v2 = $("#value2").val();
+				var op = $("#operation").val();
+				var url = 'http://localhost:8080/MathProxy/rest/hello/math?operation='+op+'&value1='+v1+'&value2='+v2;
+			$.getJSON(url, function(jd) {   	   
+                  //$('#stage').html('<p> Origin: ' + jd.origin + '</p>');
+                  //$('#stage').append('<p>Origin 2 : ' + jd.origin+ '</p>');
+                  $('#stage').html('<p>Result : ' + jd.result + '</p>');
+               });
+					
+            });
+         });
+      </script>
+   </head>
+	
+   <body>
+	
+      <p>Click on the button to load result.json file −</p>
+			
+	  Operation:
+	  <SELECT NAME="operation" id="operation">
+		<OPTION VALUE="add">Add
+		<OPTION VALUE="subtract">Subtract
+		<OPTION VALUE="multiply">Multiply
+		<OPTION VALUE="divide">Divide
+		<OPTION VALUE="stall">Stall
+		<OPTION VALUE="error">Error
+	  </SELECT>
+	  <br>
+	  Value1:
+	  <INPUT TYPE="TEXT" NAME="value1" id="value1">
+	  Value2:
+	  <INPUT TYPE="TEXT" NAME="value2" id="value2">
+	  <BR>
+  
+      <input type = "button" id = "driver" value = "Load Data" />
+      <BR>
+      <BR>
+      
+      <div id = "stage" style = "background-color:#eee;">
+         RESULTS:
+      </div>
+		
+   </body>
+	
+</html>
