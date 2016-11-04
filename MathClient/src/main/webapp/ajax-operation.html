@@ -1,0 +1,74 @@
+<html>
+
+   <head>
+      <title>The AJAX Example</title>
+      
+      <script type = "text/javascript" language = "javascript">
+      
+        function loadDoc() {
+        	var v1 = document.getElementById('value1');
+			var v2 = document.getElementById('value2');
+			var op = document.getElementById('operation');
+			var ho = document.getElementById('host');
+			var po = document.getElementById('port');
+			var url = 'http://'+ho+':'+po+'/MathProxy/rest/hello/math?operation='+op+'&value1='+v1+'&value2='+v2;
+				
+			var xhttp;
+			if (window.XMLHttpRequest) {
+				// code for modern browsers
+		    	xhttp = new XMLHttpRequest();
+		    } else {
+		    	// code for IE6, IE5
+		    	xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  	}
+		
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      //document.getElementById("result").innerHTML = this.responseText;
+		      document.getElementById("result").innerHTML = url;
+		    }
+		  };
+		  xhttp.open("GET", url, true);
+		  xhttp.send();
+		}
+  
+      </script>
+   </head>
+ 
+   <body>
+	
+      <p>Ajax Example</p>
+			
+	  Host:
+	  <INPUT TYPE="TEXT" NAME="host" id="host" value="localhost">
+	  Port:
+	  <INPUT TYPE="TEXT" NAME="port" id="port" value="8080">
+	  <BR>
+	  Operation:
+	  <SELECT NAME="operation" id="operation">
+		<OPTION VALUE="add">Add
+		<OPTION VALUE="subtract">Subtract
+		<OPTION VALUE="multiply">Multiply
+		<OPTION VALUE="divide">Divide
+		<OPTION VALUE="stall">Stall
+		<OPTION VALUE="error">Error
+	  </SELECT>
+	  <br>
+	  Value1:
+	  <INPUT TYPE="TEXT" NAME="value1" id="value1">
+	  Value2:
+	  <INPUT TYPE="TEXT" NAME="value2" id="value2">
+	  <BR>
+  
+      <input type = "button" id = "driver" value = "Load Data" 
+      	onClick = "loadDoc()" />
+      <BR>
+      <BR>
+      
+      <div id = "result" style = "background-color:#eee;">
+         RESULTS:
+      </div>
+		
+   </body>
+	
+</html>
