@@ -6,13 +6,13 @@
       <script type = "text/javascript" language = "javascript">
       
         function loadDoc() {
-        	var v1 = document.getElementById('value1');
-			var v2 = document.getElementById('value2');
-			var op = document.getElementById('operation');
-			var ho = document.getElementById('host');
-			var po = document.getElementById('port');
+        	var v1 = document.getElementById('value1').value;
+			var v2 = document.getElementById('value2').value;
+			var op = document.getElementById('operation').value;
+			var ho = document.getElementById('host').value;
+			var po = document.getElementById('port').value;
 			var url = 'http://'+ho+':'+po+'/MathProxy/rest/hello/math?operation='+op+'&value1='+v1+'&value2='+v2;
-				
+			console.log(url);
 			var xhttp;
 			if (window.XMLHttpRequest) {
 				// code for modern browsers
@@ -24,11 +24,12 @@
 		
 		  xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
-		      //document.getElementById("result").innerHTML = this.responseText;
-		      document.getElementById("result").innerHTML = url;
+		      document.getElementById("result").innerHTML = this.responseText;
+		      //document.getElementById("result").innerHTML = url;
 		    }
 		  };
 		  xhttp.open("GET", url, true);
+		  xhttp.setRequestHeader("Access-Control-Allow-Origin","*");
 		  xhttp.send();
 		}
   
