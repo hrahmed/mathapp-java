@@ -19,6 +19,11 @@ session.setAttribute("UserName", request.getParameter("j_username"));%>
 Welcome  <%session.getAttribute("UserName");%>
 <br>
 <a href="logout.jsp"><b>Logout</b></a>
+<br>
+<a href="ajax-operation.html"><b>ajax-example</b></a>
+<br>
+<a href="jquery2-operation.html"><b>jquery2-example</b></a>
+
 <hr>
 <hr>
 <h3>Simple Java</h3>
